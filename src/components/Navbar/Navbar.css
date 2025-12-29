@@ -96,6 +96,28 @@
     margin-left: var(--space-4);
 }
 
+.navbar__resume-btn,
+.navbar__mobile-resume {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.navbar__spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: navbar-spin 0.75s linear infinite;
+}
+
+.navbar__resume-btn.is-loading,
+.navbar__mobile-resume.is-loading {
+    pointer-events: none;
+    opacity: 0.85;
+}
+
 /* Mobile Menu Button */
 .navbar__mobile-btn {
     display: none;
@@ -183,6 +205,12 @@
     margin-top: var(--space-4);
     width: 100%;
     justify-content: center;
+}
+
+@keyframes navbar-spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Responsive */
