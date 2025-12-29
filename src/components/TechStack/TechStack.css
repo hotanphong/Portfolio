@@ -1,0 +1,118 @@
+/* =============================================
+   TECH STACK COMPONENT STYLES
+   ============================================= */
+
+.techstack {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-8);
+    width: 100%;
+}
+
+.techstack__category {
+    background: linear-gradient(135deg, var(--color-bg-card) 0%, rgba(99, 102, 241, 0.03) 100%);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    transition: all var(--transition-base);
+}
+
+.techstack__category:hover {
+    border-color: var(--color-accent-primary);
+    box-shadow: 0 12px 24px rgba(99, 102, 241, 0.15);
+    transform: translateY(-4px);
+}
+
+.techstack__category-title {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--color-accent-primary) 0%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-2);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.techstack__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+}
+
+/* Pill chips */
+.techstack__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-5);
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.techstack__chip:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-accent-primary);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.18);
+}
+
+.techstack__chip-icon svg {
+    width: 20px;
+    height: 20px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.techstack__chip-label {
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .techstack {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .techstack {
+        grid-template-columns: 1fr;
+    }
+
+    .techstack__item {
+        padding: var(--space-2);
+    }
+
+    .techstack__icon-wrapper {
+        width: 36px;
+        height: 36px;
+    }
+
+    .techstack__name {
+        font-size: var(--text-2xs);
+    }
+}
+
+@media (max-width: 480px) {
+    .techstack__item {
+        padding: var(--space-2);
+    }
+
+    .techstack__icon-wrapper {
+        width: 32px;
+        height: 32px;
+    }
+
+    .techstack__name {
+        font-size: var(--text-2xs);
+    }
+}

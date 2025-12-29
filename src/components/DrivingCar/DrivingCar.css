@@ -1,0 +1,72 @@
+.driving-car {
+    position: absolute;
+    z-index: 10;
+    width: 60px;
+    height: 30px;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.6));
+}
+
+.driving-car__svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.car-headlight {
+    animation: headlightFlash 0.2s infinite alternate;
+}
+
+@keyframes headlightFlash {
+    from {
+        opacity: 0.6;
+        box-shadow: 0 0 5px #fbbf24;
+    }
+
+    to {
+        opacity: 1;
+        box-shadow: 0 0 15px #fbbf24;
+    }
+}
+
+.car-chassis {
+    transform-origin: center bottom;
+    animation: chassisBounce 0.15s ease-in-out infinite alternate;
+}
+
+@keyframes chassisBounce {
+    from {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    to {
+        transform: translateY(-1.5px) rotate(1deg);
+    }
+}
+
+.car-wheel-front {
+    transform-origin: 16px 24px;
+    animation: wheelRotate 0.5s linear infinite;
+}
+
+.car-wheel-rear {
+    transform-origin: 44px 24px;
+    animation: wheelRotate 0.5s linear infinite;
+}
+
+@keyframes wheelRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .driving-car {
+        display: none;
+    }
+}
