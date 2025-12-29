@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useTheme } from '../../contexts/ThemeContext'
 import { useLanguage } from '../../contexts/LanguageContext'
+import resumePdf from '../../assets/imgs/HoTanPhong-Resume.pdf'
 import './Navbar.css'
 
 function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const [activeSection, setActiveSection] = useState('home')
+    const [isDownloading, setIsDownloading] = useState(false)
+    const downloadTimerRef = useRef(null)
     const { theme, toggleTheme } = useTheme()
     const { language, toggleLanguage, t } = useLanguage()
 
@@ -33,6 +36,13 @@ function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
+    // Cleanup pending resume loading timer
+    useEffect(() => () => {
+        if (downloadTimerRef.current) {
+            clearTimeout(downloadTimerRef.current)
+        }
+    }, [])
+
     const scrollToSection = (id) => {
         setIsMobileMenuOpen(false)
         const element = document.getElementById(id)
@@ -56,6 +66,14 @@ function Navbar() {
         { id: 'projects', label: t('nav.projects') },
         { id: 'contact', label: t('nav.contact') },
     ]
+
+    const handleResumeClick = () => {
+        if (downloadTimerRef.current) {
+            clearTimeout(downloadTimerRef.current)
+        }
+        setIsDownloading(true)
+        downloadTimerRef.current = setTimeout(() => setIsDownloading(false), 1800)
+    }
 
     return (
         <header className={`navbar ${isScrolled ? 'navbar--scrolled' : ''}`}>
@@ -118,15 +136,21 @@ function Navbar() {
 
                     {/* Resume Button */}
                     <a
-                        href="/MyCV.pdf"
-                        download="MyCV.pdf"
-                        className="btn btn-primary navbar__resume-btn"
+                        href={resumePdf}
+                        download="HoTanPhong-Resume.pdf"
+                        onClick={handleResumeClick}
+                        aria-busy={isDownloading}
+                        className={`btn btn-primary navbar__resume-btn${isDownloading ? ' is-loading' : ''}`}
                     >
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                            <polyline points="7,10 12,15 17,10" />
-                            <line x1="12" y1="15" x2="12" y2="3" />
-                        </svg>
+                        {isDownloading ? (
+                            <span className="navbar__spinner" aria-hidden="true"></span>
+                        ) : (
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="7,10 12,15 17,10" />
+                                <line x1="12" y1="15" x2="12" y2="3" />
+                            </svg>
+                        )}
                         {t('nav.resume')}
                     </a>
                 </div>
@@ -174,10 +198,13 @@ function Navbar() {
 
                         <li>
                             <a
-                                href="/MyCV.pdf"
-                                download="MyCV.pdf"
-                                className="btn btn-primary navbar__mobile-resume"
+                                href={resumePdf}
+                                download="HoTanPhong-Resume.pdf"
+                                onClick={handleResumeClick}
+                                aria-busy={isDownloading}
+                                className={`btn btn-primary navbar__mobile-resume${isDownloading ? ' is-loading' : ''}`}
                             >
+                                {isDownloading ? <span className="navbar__spinner" aria-hidden="true"></span> : null}
                                 {t('nav.resume')}
                             </a>
                         </li>

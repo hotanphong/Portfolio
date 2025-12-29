@@ -82,7 +82,7 @@ function DrivingCar() {
                 return
             }
 
-            const speed = 4 // Pixel per frame
+            const speed = 1.75 // Pixel per frame (20% slower)
             progressRef.current = (progressRef.current + speed) % totalLength
 
             let currentDist = progressRef.current
