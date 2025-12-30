@@ -7,7 +7,6 @@ function About() {
 
     // Get lists from translations
     const education = t('about.educationList')
-    const experience = t('about.experienceList')
     const goals = t('about.goals')
 
     return (
@@ -16,11 +15,10 @@ function About() {
             <section className="about__header section">
                 <div className="container">
                     <h1 className="about__title animate-fade-in">
-                        {t('about.title')} <span className="gradient-text">Me</span>
+                        {t('about.title')}
                     </h1>
                     <p className="about__intro animate-fade-in delay-1">
-                        Software Engineering student with a passion for creating efficient,
-                        user-centered digital solutions.
+                        {t('about.subtitle')}
                     </p>
                 </div>
             </section>
@@ -44,10 +42,6 @@ function About() {
                                 <span className="stat-card__label">{t('about.stats.projects')}</span>
                             </div>
                             <div className="stat-card">
-                                <span className="stat-card__number">1+</span>
-                                <span className="stat-card__label">{t('about.stats.exp')}</span>
-                            </div>
-                            <div className="stat-card">
                                 <span className="stat-card__number">8+</span>
                                 <span className="stat-card__label">{t('about.stats.tech')}</span>
                             </div>
@@ -60,44 +54,12 @@ function About() {
                 </div>
             </section>
 
-
             <section className="about__skills section">
                 <div className="container">
                     <h2 className="section-title">{t('about.skillsTitle')}</h2>
                     <p className="section-subtitle">{t('about.skillsSubtitle')}</p>
 
                     <TechStack />
-                </div>
-            </section>
-
-
-            <section className="about__experience section">
-                <div className="container">
-                    <h2 className="section-title">{t('about.experienceTitle')}</h2>
-                    <p className="section-subtitle">{t('about.experienceSubtitle')}</p>
-
-                    <div className="timeline">
-                        {Array.isArray(experience) && experience.map((exp, index) => (
-                            <div key={index} className="timeline__item">
-                                <div className="timeline__marker"></div>
-                                <div className="timeline__content">
-                                    <div className="timeline__header">
-                                        <div>
-                                            <h3 className="timeline__title">{exp.title}</h3>
-                                            <p className="timeline__company">{exp.company}</p>
-                                        </div>
-                                        <span className="timeline__period">{exp.period}</span>
-                                    </div>
-                                    <p className="timeline__description">{exp.description}</p>
-                                    <ul className="timeline__achievements">
-                                        {exp.achievements.map((achievement, i) => (
-                                            <li key={i}>{achievement}</li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
                 </div>
             </section>
 
