@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../../contexts/LanguageContext'
-import resumePdf from '../../assets/imgs/HoTanPhong-Resume.pdf'
+import resumePdf from '../../assets/Ho-Tan-Phong-CV.pdf'
 import './Home.css'
 
 function Home() {
