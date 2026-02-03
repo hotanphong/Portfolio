@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useTheme } from '../../contexts/ThemeContext'
 import { useLanguage } from '../../contexts/LanguageContext'
-import resumePdf from '../../assets/imgs/HoTanPhong-Resume.pdf'
+import resumePdf from '../../assets/Ho-Tan-Phong-CV.pdf'
 import './Navbar.css'
 
 function Navbar() {
@@ -199,7 +199,7 @@ function Navbar() {
                         <li>
                             <a
                                 href={resumePdf}
-                                download="HoTanPhong-Resume.pdf"
+                                download="Ho-Tan-Phong-CV.pdf"
                                 onClick={handleResumeClick}
                                 aria-busy={isDownloading}
                                 className={`btn btn-primary navbar__mobile-resume${isDownloading ? ' is-loading' : ''}`}
